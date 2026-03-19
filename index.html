@@ -698,7 +698,14 @@ const observer = new IntersectionObserver((entries) => {
     });
 }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
 
+// Observe all elements, but trigger hero immediately after a tiny delay
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+// Force hero reveals on load
+window.addEventListener('load', () => {
+    setTimeout(() => {
+        document.querySelectorAll('.hero .reveal').forEach(el => el.classList.add('visible'));
+    }, 100);
+});
 
 /* ═══════════════════════════════════════════ */
 /*  NAVBAR HIDE/SHOW ON SCROLL                 */
