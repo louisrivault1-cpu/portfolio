@@ -348,6 +348,17 @@
         /* ═══════════════════════════════════════════ */
         /*  SCROLL REVEAL                              */
         /* ═══════════════════════════════════════════ */
+        /* Hero entrance — CSS keyframes, no JS needed */
+        .hero-anim {
+            opacity: 0; transform: translateY(30px);
+            animation: heroIn 0.8s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
+        }
+        .hero-anim-d1 { animation-delay: 0.15s; }
+        .hero-anim-d2 { animation-delay: 0.3s; }
+        .hero-anim-d3 { animation-delay: 0.45s; }
+        @keyframes heroIn { to { opacity: 1; transform: translateY(0); } }
+
+        /* Scroll reveal — for sections below the fold */
         .reveal {
             opacity: 0; transform: translateY(40px);
             transition: opacity 0.8s cubic-bezier(0.25, 0.8, 0.25, 1),
@@ -423,17 +434,17 @@
     <div class="hero-bg"></div>
     <div class="hero-grid"></div>
     <div class="hero-content">
-        <div class="hero-badge reveal">
+        <div class="hero-badge hero-anim">
             <span class="dot"></span>
             Disponible en alternance — Septembre 2026
         </div>
-        <h1 class="reveal reveal-delay-1">
+        <h1 class="hero-anim hero-anim-d1">
             Louis <span class="accent">Rivault</span>
         </h1>
-        <p class="hero-sub reveal reveal-delay-2">
+        <p class="hero-sub hero-anim hero-anim-d2">
             Logistique · Transport · Digital
         </p>
-        <div class="hero-pills reveal reveal-delay-3">
+        <div class="hero-pills hero-anim hero-anim-d3">
             <span class="pill">MSC Le Havre</span>
             <span class="pill">BTS GTLA</span>
             <span class="pill">E-commerce</span>
@@ -698,14 +709,7 @@ const observer = new IntersectionObserver((entries) => {
     });
 }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
 
-// Observe all elements, but trigger hero immediately after a tiny delay
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-// Force hero reveals on load
-window.addEventListener('load', () => {
-    setTimeout(() => {
-        document.querySelectorAll('.hero .reveal').forEach(el => el.classList.add('visible'));
-    }, 100);
-});
 
 /* ═══════════════════════════════════════════ */
 /*  NAVBAR HIDE/SHOW ON SCROLL                 */
