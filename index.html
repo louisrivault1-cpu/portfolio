@@ -4,32 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Louis Rivault — Portfolio</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         /* ═══════════════════════════════════════════ */
         /*  RESET & VARIABLES                          */
         /* ═══════════════════════════════════════════ */
         *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
         :root {
-            --bg: #09090b;
-            --bg-elevated: #111113;
-            --bg-card: #16161a;
-            --bg-card-hover: #1c1c21;
-            --accent: #4ade80;
-            --accent-muted: #22c55e;
-            --accent-subtle: rgba(74, 222, 128, 0.08);
-            --accent-border: rgba(74, 222, 128, 0.12);
-            --white: #fafafa;
-            --white-soft: #d4d4d8;
-            --gray: #71717a;
-            --gray-light: #a1a1aa;
-            --gray-subtle: #27272a;
-            --border: rgba(255,255,255,0.06);
+            --bg: #0a0a0c;
+            --bg-elevated: #101014;
+            --bg-card: #141418;
+            --bg-card-hover: #1a1a1f;
+            --accent: #c8b07a;
+            --accent-muted: #a89460;
+            --accent-subtle: rgba(200, 176, 122, 0.06);
+            --accent-border: rgba(200, 176, 122, 0.12);
+            --white: #f5f5f5;
+            --white-soft: #c8c8cc;
+            --gray: #6e6e78;
+            --gray-light: #9a9aa4;
+            --gray-subtle: #252528;
+            --border: rgba(255,255,255,0.05);
             --radius: 16px;
             --radius-sm: 10px;
             --radius-pill: 50px;
-            --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Inter, system-ui, sans-serif;
+            --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", system-ui, sans-serif;
         }
         html { scroll-behavior: smooth; font-size: 16px; }
         body {
@@ -40,12 +38,12 @@
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
         }
-        ::selection { background: rgba(74, 222, 128, 0.2); color: var(--white); }
+        ::selection { background: rgba(200, 176, 122, 0.18); color: var(--white); }
 
         /* ═══════════════════════════════════════════ */
         /*  SCROLLBAR                                  */
         /* ═══════════════════════════════════════════ */
-        ::-webkit-scrollbar { width: 4px; }
+        ::-webkit-scrollbar { width: 3px; }
         ::-webkit-scrollbar-track { background: var(--bg); }
         ::-webkit-scrollbar-thumb { background: var(--gray-subtle); border-radius: 3px; }
 
@@ -56,39 +54,39 @@
             position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
             padding: 18px 48px;
             display: flex; align-items: center; justify-content: space-between;
-            background: rgba(9, 9, 11, 0.85);
-            backdrop-filter: blur(24px);
-            -webkit-backdrop-filter: blur(24px);
+            background: rgba(10, 10, 12, 0.88);
+            backdrop-filter: blur(28px);
+            -webkit-backdrop-filter: blur(28px);
             border-bottom: 1px solid var(--border);
             transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
         nav.hidden { transform: translateY(-100%); }
         .nav-logo {
             font-family: var(--font-sans);
-            font-weight: 700; font-size: 1.1rem;
-            letter-spacing: -0.5px; color: var(--white);
+            font-weight: 600; font-size: 1.05rem;
+            letter-spacing: -0.3px; color: var(--white);
         }
-        .nav-logo span { color: var(--gray-light); font-weight: 400; }
+        .nav-logo span { color: var(--gray-light); font-weight: 300; }
         .nav-links { display: flex; gap: 36px; list-style: none; }
         .nav-links a {
             color: var(--gray); text-decoration: none;
-            font-size: 0.8rem; font-weight: 500;
-            letter-spacing: 1px; text-transform: uppercase;
+            font-size: 0.75rem; font-weight: 500;
+            letter-spacing: 1.2px; text-transform: uppercase;
             transition: color 0.3s;
         }
-        .nav-links a:hover, .nav-links a.active { color: var(--white); }
+        .nav-links a:hover, .nav-links a.active { color: var(--white-soft); }
         .nav-cta {
             background: transparent; color: var(--white-soft);
-            padding: 10px 24px; border-radius: var(--radius-pill);
-            text-decoration: none; font-weight: 500; font-size: 0.8rem;
+            padding: 9px 22px; border-radius: var(--radius-pill);
+            text-decoration: none; font-weight: 500; font-size: 0.75rem;
             letter-spacing: 0.3px;
-            border: 1px solid rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.08);
             transition: all 0.3s;
             display: inline-flex; align-items: center; gap: 8px;
         }
         .nav-cta:hover {
-            background: rgba(255,255,255,0.04);
-            border-color: rgba(255,255,255,0.2);
+            background: rgba(255,255,255,0.03);
+            border-color: rgba(255,255,255,0.16);
             transform: translateY(-1px);
         }
         .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; }
@@ -105,46 +103,46 @@
         .hero-bg {
             position: absolute; inset: 0;
             background:
-                radial-gradient(ellipse 50% 40% at 50% 35%, rgba(255,255,255,0.015), transparent 70%);
+                radial-gradient(ellipse 45% 35% at 50% 40%, rgba(200, 176, 122, 0.012), transparent 70%);
         }
         .hero-content { text-align: center; position: relative; z-index: 1; max-width: 720px; }
         .hero-badge {
             display: inline-flex; align-items: center; gap: 8px;
             background: var(--accent-subtle); border: 1px solid var(--accent-border);
             padding: 8px 20px; border-radius: var(--radius-pill);
-            font-size: 0.75rem; font-weight: 500; color: var(--accent);
+            font-size: 0.72rem; font-weight: 500; color: var(--accent);
             margin-bottom: 40px; letter-spacing: 0.5px;
         }
-        .hero-badge .dot { width: 6px; height: 6px; background: var(--accent); border-radius: 50%; animation: pulse 2.5s ease-in-out infinite; }
+        .hero-badge .dot { width: 5px; height: 5px; background: var(--accent); border-radius: 50%; animation: pulse 2.5s ease-in-out infinite; }
         @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
         .hero h1 {
             font-family: var(--font-sans);
-            font-size: clamp(2.8rem, 6vw, 5rem);
+            font-size: clamp(2.8rem, 6vw, 4.8rem);
             font-weight: 700; line-height: 1.05;
-            letter-spacing: -2px;
+            letter-spacing: -2.5px;
             margin-bottom: 24px;
             color: var(--white);
         }
         .hero-sub {
-            font-size: clamp(0.95rem, 1.8vw, 1.1rem);
-            color: var(--gray-light); font-weight: 400;
-            line-height: 1.75; max-width: 520px; margin: 0 auto 48px;
+            font-size: clamp(0.95rem, 1.8vw, 1.08rem);
+            color: var(--gray-light); font-weight: 300;
+            line-height: 1.8; max-width: 520px; margin: 0 auto 48px;
             letter-spacing: 0.1px;
         }
-        .hero-sub strong { color: var(--white); font-weight: 600; }
+        .hero-sub strong { color: var(--white); font-weight: 500; }
         .hero-pills { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
         .pill {
             padding: 7px 16px; border-radius: var(--radius-pill);
-            background: rgba(255,255,255,0.03); border: 1px solid var(--border);
-            font-size: 0.75rem; color: var(--gray-light); font-weight: 400;
+            background: rgba(255,255,255,0.025); border: 1px solid var(--border);
+            font-size: 0.72rem; color: var(--gray-light); font-weight: 400;
             letter-spacing: 0.3px; transition: all 0.3s;
         }
-        .pill:hover { background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.12); color: var(--white); }
+        .pill:hover { background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.1); color: var(--white-soft); }
         .scroll-indicator {
             position: absolute; bottom: 48px; left: 50%; transform: translateX(-50%);
             display: flex; flex-direction: column; align-items: center; gap: 8px;
         }
-        .scroll-indicator span { font-size: 0.65rem; color: var(--gray-subtle); text-transform: uppercase; letter-spacing: 3px; }
+        .scroll-indicator span { font-size: 0.6rem; color: var(--gray-subtle); text-transform: uppercase; letter-spacing: 3px; }
         .scroll-line { width: 1px; height: 36px; background: linear-gradient(to bottom, var(--gray), transparent); animation: scrollDown 2.5s infinite; }
         @keyframes scrollDown { 0% { transform: scaleY(0); transform-origin: top; } 50% { transform: scaleY(1); transform-origin: top; } 51% { transform-origin: bottom; } 100% { transform: scaleY(0); transform-origin: bottom; } }
 
@@ -153,14 +151,14 @@
         /* ═══════════════════════════════════════════ */
         section { padding: 120px 48px; max-width: 1100px; margin: 0 auto; }
         .section-label {
-            font-size: 0.7rem; text-transform: uppercase;
+            font-size: 0.65rem; text-transform: uppercase;
             letter-spacing: 4px; color: var(--gray); font-weight: 500;
             margin-bottom: 16px;
         }
         .section-title {
             font-family: var(--font-sans);
-            font-size: clamp(1.8rem, 3.5vw, 2.6rem);
-            font-weight: 700; letter-spacing: -1px;
+            font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+            font-weight: 700; letter-spacing: -1.2px;
             margin-bottom: 64px; line-height: 1.15;
             color: var(--white);
         }
@@ -179,8 +177,8 @@
         }
         .project-card:hover {
             transform: translateY(-6px);
-            border-color: rgba(255,255,255,0.1);
-            box-shadow: 0 24px 64px rgba(0,0,0,0.4);
+            border-color: rgba(255,255,255,0.08);
+            box-shadow: 0 24px 64px rgba(0,0,0,0.5);
         }
         .project-visual {
             height: 200px; position: relative; overflow: hidden;
@@ -191,50 +189,57 @@
             background: linear-gradient(to bottom, transparent 40%, var(--bg-card));
             z-index: 2;
         }
-        .pv-sextant { background: linear-gradient(135deg, #131316, #0c0c0e); }
+
+        /* Sextant */
+        .pv-sextant { background: linear-gradient(135deg, #111116, #0c0c10); }
         .pv-sextant::before {
             content: ''; position: absolute; z-index: 1;
             width: 100px; height: 100px;
-            border: 1px solid rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.05);
             border-radius: 50%;
             animation: rotateSlow 25s linear infinite;
         }
         .pv-sextant::after {
             content: ''; position: absolute; z-index: 1;
             width: 60px; height: 60px;
-            border: 1px solid rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.03);
             border-radius: 50%;
             animation: rotateSlow 15s linear infinite reverse;
         }
         @keyframes rotateSlow { to { transform: rotate(360deg); } }
-        .pv-sextant .icon { position: absolute; z-index: 1; font-size: 48px; filter: grayscale(0.3); }
 
-        .pv-atlas { background: linear-gradient(135deg, #111316, #0a0d0e); }
-        .pv-atlas .icon { position: absolute; z-index: 1; font-size: 48px; filter: grayscale(0.2); }
+        /* Atlas */
+        .pv-atlas { background: linear-gradient(135deg, #10111a, #0a0c12); }
 
-        .pv-ugc { background: linear-gradient(135deg, #131115, #0d0b0e); }
-        .pv-ugc .icon { position: absolute; z-index: 1; font-size: 48px; filter: grayscale(0.2); }
+        /* UGC */
+        .pv-ugc { background: linear-gradient(135deg, #12101a, #0c0a12); }
+
+        .project-icon {
+            position: relative; z-index: 1;
+            width: 48px; height: 48px;
+            display: flex; align-items: center; justify-content: center;
+            opacity: 0.6;
+        }
+        .project-icon svg { width: 40px; height: 40px; }
 
         .project-info { padding: 24px 28px 28px; }
         .project-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px; }
         .tag {
             padding: 4px 10px; border-radius: var(--radius-pill);
-            background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06);
-            font-size: 0.65rem; color: var(--gray-light); font-weight: 500;
+            background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.05);
+            font-size: 0.62rem; color: var(--gray-light); font-weight: 500;
             text-transform: uppercase; letter-spacing: 0.8px;
         }
-        .tag.sage { background: rgba(255,255,255,0.04); border-color: rgba(255,255,255,0.06); color: var(--gray-light); }
-        .tag.mauve { background: rgba(255,255,255,0.04); border-color: rgba(255,255,255,0.06); color: var(--gray-light); }
         .project-name {
             font-family: var(--font-sans);
-            font-size: 1.3rem; font-weight: 600;
+            font-size: 1.25rem; font-weight: 600;
             margin-bottom: 10px; letter-spacing: -0.5px;
         }
-        .project-desc { font-size: 0.85rem; color: var(--gray); line-height: 1.7; margin-bottom: 20px; }
+        .project-desc { font-size: 0.84rem; color: var(--gray); line-height: 1.7; margin-bottom: 20px; font-weight: 300; }
         .project-link {
             display: inline-flex; align-items: center; gap: 8px;
             color: var(--accent); text-decoration: none;
-            font-size: 0.8rem; font-weight: 500; letter-spacing: 0.3px;
+            font-size: 0.78rem; font-weight: 500; letter-spacing: 0.3px;
             transition: gap 0.3s;
         }
         .project-link:hover { gap: 14px; }
@@ -242,7 +247,7 @@
         .project-link:hover svg { transform: translateX(4px); }
 
         /* ═══════════════════════════════════════════ */
-        /*  CV SECTION — FLUID DOCUMENT STYLE          */
+        /*  CV SECTION                                 */
         /* ═══════════════════════════════════════════ */
         .cv-document {
             background: var(--bg-elevated);
@@ -255,7 +260,7 @@
         .cv-document::before {
             content: '';
             position: absolute; top: 0; left: 0; right: 0; height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent);
+            background: linear-gradient(90deg, transparent, rgba(200, 176, 122, 0.06), transparent);
         }
 
         /* CV Header */
@@ -266,14 +271,13 @@
             margin-bottom: 48px;
             flex-wrap: wrap; gap: 32px;
         }
-        .cv-header-left {}
         .cv-header-name {
             font-family: var(--font-sans);
-            font-size: 2rem; font-weight: 700;
+            font-size: 1.9rem; font-weight: 700;
             letter-spacing: -1px; margin-bottom: 6px;
         }
         .cv-header-tagline {
-            color: var(--gray-light); font-size: 0.9rem; font-weight: 400;
+            color: var(--gray-light); font-size: 0.88rem; font-weight: 300;
             letter-spacing: 0.3px; margin-bottom: 16px;
         }
         .cv-header-meta {
@@ -281,23 +285,22 @@
         }
         .cv-meta-item {
             display: flex; align-items: center; gap: 6px;
-            font-size: 0.8rem; color: var(--gray-light);
+            font-size: 0.78rem; color: var(--gray-light); font-weight: 400;
         }
-        .cv-meta-item svg { width: 13px; height: 13px; color: var(--gray); flex-shrink: 0; opacity: 0.6; }
+        .cv-meta-item svg { width: 13px; height: 13px; color: var(--gray); flex-shrink: 0; opacity: 0.5; }
         .cv-header-right {
             display: flex; flex-wrap: wrap; gap: 6px; max-width: 360px;
         }
         .cv-skill-tag {
             padding: 5px 12px; border-radius: var(--radius-pill);
-            background: rgba(255,255,255,0.03); border: 1px solid var(--border);
-            font-size: 0.7rem; color: var(--gray-light); font-weight: 400;
+            background: rgba(255,255,255,0.025); border: 1px solid var(--border);
+            font-size: 0.68rem; color: var(--gray-light); font-weight: 400;
         }
 
         /* CV Content Flow */
         .cv-flow { display: grid; grid-template-columns: 1fr 1fr; gap: 48px 64px; }
-        .cv-section { }
         .cv-section-title {
-            font-size: 0.7rem; text-transform: uppercase;
+            font-size: 0.65rem; text-transform: uppercase;
             letter-spacing: 3px; color: var(--gray);
             margin-bottom: 24px; font-weight: 600;
             display: flex; align-items: center; gap: 12px;
@@ -308,23 +311,23 @@
         }
 
         .cv-item { margin-bottom: 24px; position: relative; }
-        .cv-item-title { font-weight: 600; font-size: 0.95rem; margin-bottom: 3px; color: var(--white); }
-        .cv-item-sub { color: var(--gray-light); font-size: 0.82rem; margin-bottom: 3px; }
+        .cv-item-title { font-weight: 600; font-size: 0.92rem; margin-bottom: 3px; color: var(--white); letter-spacing: -0.2px; }
+        .cv-item-sub { color: var(--gray-light); font-size: 0.8rem; margin-bottom: 3px; font-weight: 300; }
         .cv-item-date {
-            color: var(--gray); font-size: 0.75rem; font-weight: 500;
+            color: var(--gray); font-size: 0.72rem; font-weight: 500;
             letter-spacing: 0.5px;
         }
         .cv-item-details {
             margin-top: 8px; padding-left: 0; list-style: none;
         }
         .cv-item-details li {
-            font-size: 0.8rem; color: var(--gray);
+            font-size: 0.78rem; color: var(--gray);
             line-height: 1.7; padding-left: 14px; position: relative;
-            margin-bottom: 2px;
+            margin-bottom: 2px; font-weight: 300;
         }
         .cv-item-details li::before {
             content: ''; position: absolute; left: 0; top: 10px;
-            width: 4px; height: 4px; border-radius: 50%;
+            width: 3px; height: 3px; border-radius: 50%;
             background: var(--gray-subtle);
         }
 
@@ -334,24 +337,31 @@
         }
         .cv-inline-tag {
             padding: 6px 14px; border-radius: var(--radius-sm);
-            background: rgba(255,255,255,0.03); border: 1px solid var(--border);
-            font-size: 0.75rem; color: var(--gray-light);
+            background: rgba(255,255,255,0.025); border: 1px solid var(--border);
+            font-size: 0.73rem; color: var(--gray-light); font-weight: 400;
         }
 
         /* Full-width CV section */
-        .cv-section-full {
-            grid-column: 1 / -1;
-        }
+        .cv-section-full { grid-column: 1 / -1; }
         .cv-interests {
             display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px;
         }
         .cv-interest {
             padding: 6px 16px; border-radius: var(--radius-pill);
             background: rgba(255,255,255,0.02); border: 1px solid var(--border);
-            font-size: 0.75rem; color: var(--gray);
+            font-size: 0.73rem; color: var(--gray); font-weight: 400;
             transition: all 0.3s;
         }
-        .cv-interest:hover { border-color: rgba(255,255,255,0.12); color: var(--white-soft); }
+        .cv-interest:hover { border-color: rgba(255,255,255,0.1); color: var(--white-soft); }
+
+        /* ═══════════════════════════════════════════ */
+        /*  PROFIL                                     */
+        /* ═══════════════════════════════════════════ */
+        .profil-text {
+            font-size: 1.05rem; color: var(--gray-light); line-height: 1.85;
+            max-width: 680px; font-weight: 300; letter-spacing: 0.1px;
+        }
+        .profil-text strong { color: var(--white); font-weight: 500; }
 
         /* ═══════════════════════════════════════════ */
         /*  CONTACT                                    */
@@ -365,38 +375,38 @@
         }
         .contact-wrapper h2 {
             font-family: var(--font-sans);
-            font-size: clamp(1.8rem, 3.5vw, 2.4rem);
+            font-size: clamp(1.8rem, 3.5vw, 2.3rem);
             font-weight: 700; margin-bottom: 16px;
             letter-spacing: -0.8px;
         }
         .contact-wrapper p {
-            color: var(--gray); font-size: 0.95rem; margin-bottom: 40px;
+            color: var(--gray); font-size: 0.92rem; margin-bottom: 40px;
             max-width: 440px; margin-left: auto; margin-right: auto;
-            line-height: 1.65;
+            line-height: 1.65; font-weight: 300;
         }
         .linkedin-btn {
             display: inline-flex; align-items: center; gap: 10px;
             background: transparent; color: var(--white);
             padding: 14px 36px; border-radius: var(--radius-pill);
-            text-decoration: none; font-weight: 500; font-size: 0.9rem;
-            border: 1px solid rgba(255,255,255,0.12);
+            text-decoration: none; font-weight: 500; font-size: 0.88rem;
+            border: 1px solid rgba(255,255,255,0.1);
             transition: all 0.3s; letter-spacing: 0.3px;
         }
         .linkedin-btn:hover {
-            background: rgba(255,255,255,0.04);
-            border-color: rgba(255,255,255,0.25);
+            background: rgba(255,255,255,0.03);
+            border-color: rgba(255,255,255,0.2);
             transform: translateY(-2px);
-            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.4);
         }
-        .linkedin-btn svg { width: 18px; height: 18px; opacity: 0.7; }
+        .linkedin-btn svg { width: 18px; height: 18px; opacity: 0.65; }
 
         /* ═══════════════════════════════════════════ */
         /*  FOOTER                                     */
         /* ═══════════════════════════════════════════ */
         footer {
             text-align: center; padding: 48px;
-            font-size: 0.7rem; color: var(--gray-subtle);
-            letter-spacing: 1px;
+            font-size: 0.65rem; color: var(--gray-subtle);
+            letter-spacing: 1.5px; text-transform: uppercase;
         }
 
         /* ═══════════════════════════════════════════ */
@@ -437,7 +447,7 @@
             .nav-links.open {
                 display: flex; flex-direction: column;
                 position: absolute; top: 100%; left: 0; right: 0;
-                background: rgba(9,9,11,0.96);
+                background: rgba(10,10,12,0.97);
                 backdrop-filter: blur(24px);
                 padding: 24px; gap: 16px;
                 border-bottom: 1px solid var(--border);
@@ -446,10 +456,11 @@
             .hero { padding: 100px 20px 60px; }
             .cv-document { padding: 32px 24px; }
             .cv-header { flex-direction: column; }
+            .contact-wrapper { padding: 48px 24px; }
         }
 
         /* ═══════════════════════════════════════════ */
-        /*  AMBIENT GLOW (very subtle)                 */
+        /*  AMBIENT GLOW                               */
         /* ═══════════════════════════════════════════ */
         .ambient {
             position: fixed; inset: 0; z-index: -1; pointer-events: none;
@@ -457,19 +468,19 @@
         }
         .ambient-orb {
             position: absolute; border-radius: 50%;
-            filter: blur(140px); opacity: 0.025;
+            filter: blur(140px); opacity: 0.02;
         }
         .ambient-orb-1 {
-            width: 600px; height: 600px;
-            background: #ffffff;
+            width: 500px; height: 500px;
+            background: #d4c5a0;
             top: -200px; right: -100px;
-            animation: drift 20s ease-in-out infinite;
+            animation: drift 22s ease-in-out infinite;
         }
         .ambient-orb-2 {
-            width: 400px; height: 400px;
-            background: #5a6b8a;
+            width: 350px; height: 350px;
+            background: #5a6178;
             bottom: -100px; left: -100px;
-            animation: drift 25s ease-in-out infinite reverse;
+            animation: drift 28s ease-in-out infinite reverse;
         }
         @keyframes drift {
             0%, 100% { transform: translate(0, 0); }
@@ -517,7 +528,7 @@
         <div class="hero-pills hero-anim hero-anim-d3">
             <span class="pill">MSC Le Havre</span>
             <span class="pill">BTS GTLA</span>
-            <span class="pill">E-commerce</span>
+            <span class="pill">Etsy Star Seller</span>
             <span class="pill">Automatisation IA</span>
             <span class="pill">Gestion de projet</span>
         </div>
@@ -537,7 +548,15 @@
         <!-- SEXTANT -->
         <div class="project-card reveal reveal-d1" onclick="window.open('https://louisrivault1-cpu.github.io/sextant-demo/', '_blank')">
             <div class="project-visual pv-sextant">
-                <span class="icon">&#x1F9ED;</span>
+                <div class="project-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10"/>
+                        <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/>
+                        <path d="M2 12h20"/>
+                        <path d="M12 2c-2.5 4-4 8-4 10s1.5 6 4 10"/>
+                        <path d="M12 2c2.5 4 4 8 4 10s-1.5 6-4 10"/>
+                    </svg>
+                </div>
                 <div class="overlay"></div>
             </div>
             <div class="project-info">
@@ -559,7 +578,13 @@
         <!-- ATLAS -->
         <div class="project-card reveal reveal-d2" onclick="window.open('https://louisrivault1-cpu.github.io/Atlas/', '_blank')">
             <div class="project-visual pv-atlas">
-                <span class="icon">&#x1F4DA;</span>
+                <div class="project-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/>
+                        <path d="M8 7h6"/>
+                        <path d="M8 11h4"/>
+                    </svg>
+                </div>
                 <div class="overlay"></div>
             </div>
             <div class="project-info">
@@ -581,18 +606,25 @@
         <!-- LRI AI UGC -->
         <div class="project-card reveal reveal-d3">
             <div class="project-visual pv-ugc">
-                <span class="icon">&#x1F916;</span>
+                <div class="project-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="m22 8-6 4 6 4V8Z"/>
+                        <rect x="1" y="5" width="15" height="14" rx="2" ry="2"/>
+                        <circle cx="8.5" cy="10" r="1.5"/>
+                        <path d="M5 15.5s1-1.5 3.5-1.5 3.5 1.5 3.5 1.5"/>
+                    </svg>
+                </div>
                 <div class="overlay"></div>
             </div>
             <div class="project-info">
                 <div class="project-tags">
                     <span class="tag">IA</span>
-                    <span class="tag">E-commerce</span>
                     <span class="tag">Automatisation</span>
+                    <span class="tag">Whop</span>
                 </div>
                 <h3 class="project-name">LRI AI UGC</h3>
                 <p class="project-desc">
-                    Business e-commerce multi-boutiques automatisé via IA générative. Sourcing, fiches produits, SEO dynamique — Make.com + Notion. Star Seller, 400+ avis.
+                    Workflows IA pour la création de contenu UGC automatisé. Pipelines Make.com, génération et post-production — disponible sur Whop.
                 </p>
                 <span class="project-link" style="opacity: 0.4; cursor: default;">
                     Projet en activité
@@ -624,24 +656,26 @@
                         Anglais B2 · Espagnol A2
                     </span>
                     <span class="cv-meta-item">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"/></svg>
-                        louis.rivault1@gmail.com
-                    </span>
-                    <span class="cv-meta-item">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 0 1-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 0 0-1.091-.852H4.5A2.25 2.25 0 0 0 2.25 4.5v2.25Z"/></svg>
-                        06 49 85 20 57
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 0 1 1.242 7.244l-4.5 4.5a4.5 4.5 0 0 1-6.364-6.364l1.757-1.757m13.35-.622 1.757-1.757a4.5 4.5 0 0 0-6.364-6.364l-4.5 4.5a4.5 4.5 0 0 0 1.242 7.244"/></svg>
+                        <a href="https://www.linkedin.com/in/louis-rivault-b267502aa" target="_blank" style="color: var(--gray-light); text-decoration: none;">LinkedIn</a>
                     </span>
                 </div>
             </div>
             <div class="cv-header-right">
                 <span class="cv-skill-tag">Coordination logistique</span>
-                <span class="cv-skill-tag">Booking maritime</span>
-                <span class="cv-skill-tag">Gestion des flux</span>
-                <span class="cv-skill-tag">KPIs & reporting</span>
-                <span class="cv-skill-tag">E-commerce</span>
-                <span class="cv-skill-tag">Automatisation IA</span>
                 <span class="cv-skill-tag">Gestion de projet</span>
+                <span class="cv-skill-tag">Gestion des flux de transport</span>
+                <span class="cv-skill-tag">Suivi d'envois & tracking</span>
+                <span class="cv-skill-tag">Optimisation des itinéraires</span>
             </div>
+        </div>
+
+        <!-- PROFIL -->
+        <div style="margin-bottom: 48px; padding-bottom: 40px; border-bottom: 1px solid var(--border);">
+            <h4 class="cv-section-title">Profil</h4>
+            <p class="profil-text">
+                Actuellement en deuxième année de <strong>BTS GTLA</strong> à l'EM Normandie, je recherche une alternance pour ma 3ème année en <strong>Bachelor Management des Transports et de la Logistique</strong>. Coordinateur logistique en alternance chez <strong>MSC</strong> (transport maritime), je gère également une boutique Etsy en activité (400+ avis, Star Seller). Profil polyvalent alliant logistique opérationnelle et compétences digitales.
+            </p>
         </div>
 
         <!-- CONTENT FLOW -->
@@ -674,11 +708,10 @@
                     <div class="cv-item-sub">MSC — Mediterranean Shipping Company, Le Havre</div>
                     <div class="cv-item-date">2024 — 2026</div>
                     <ul class="cv-item-details">
-                        <li>Suivi expéditions export en merchant haulage, documentation B/L</li>
-                        <li>Interface clients, transitaires et agents portuaires</li>
-                        <li>Traitement bookings via OVA et Echo</li>
-                        <li>Résolution litiges et anomalies documentaires</li>
-                        <li>Suivi KPIs et reporting mensuel</li>
+                        <li>Coordination transport maritime, gestion bookings</li>
+                        <li>Documentation import/export (BL, packing list, certificats d'origine)</li>
+                        <li>Interface clients / agents / compagnies</li>
+                        <li>Suivi KPIs, optimisation process</li>
                     </ul>
                 </div>
                 <div class="cv-item">
@@ -686,8 +719,7 @@
                     <div class="cv-item-sub">Lassarat</div>
                     <div class="cv-item-date">Juin 2024</div>
                     <ul class="cv-item-details">
-                        <li>Gestion opérations de transport, optimisation itinéraires</li>
-                        <li>Coordination clients et agences</li>
+                        <li>Logiciel Dispatcher, coordination clients et agences</li>
                     </ul>
                 </div>
                 <div class="cv-item">
@@ -695,17 +727,15 @@
                     <div class="cv-item-sub">Lassarat</div>
                     <div class="cv-item-date">2024</div>
                     <ul class="cv-item-details">
-                        <li>Diagnostic techniques d'arrimage, recommandations</li>
-                        <li>Création d'un plan de circulation optimisé</li>
+                        <li>Diagnostic arrimage, plan de circulation optimisé</li>
                     </ul>
                 </div>
                 <div class="cv-item">
-                    <div class="cv-item-title">Représentant de Ventes</div>
+                    <div class="cv-item-title">Représentant de Ventes (temps partiel)</div>
                     <div class="cv-item-sub">Ostemboir (Micro-entreprise)</div>
                     <div class="cv-item-date">2021 — 2024</div>
                     <ul class="cv-item-details">
-                        <li>Relation client B2C, préparation commandes</li>
-                        <li>Planification livraisons internationales</li>
+                        <li>Relation client B2C, livraisons international</li>
                     </ul>
                 </div>
             </div>
@@ -714,14 +744,13 @@
             <div class="cv-section">
                 <h4 class="cv-section-title">Projet entrepreneurial</h4>
                 <div class="cv-item">
-                    <div class="cv-item-title">Fondateur — Boutique Etsy (en activité)</div>
-                    <div class="cv-item-sub">ToddBakeryArt — E-commerce décoration & collectibles</div>
+                    <div class="cv-item-title">Fondateur — Boutique Etsy ToddBakeryArt</div>
+                    <div class="cv-item-sub">Star Seller · 400+ avis · CA 2 400–4 000 EUR/mois</div>
                     <div class="cv-item-date">2025 — actuel</div>
                     <ul class="cv-item-details">
-                        <li>Star Seller, 400+ avis clients, CA récurrent 2 400–4 000 EUR/mois</li>
-                        <li>Marge nette de 38 % grâce à l'optimisation des coûts</li>
-                        <li>Workflows automatisés : sourcing, fiches produits, traitement images</li>
-                        <li>Pilotage Make.com + Notion, SEO et pricing dynamique</li>
+                        <li>Marge nette 38 %</li>
+                        <li>Workflows automatisés Make.com + Notion</li>
+                        <li>SEO et pricing dynamique</li>
                     </ul>
                 </div>
             </div>
@@ -730,12 +759,11 @@
             <div class="cv-section">
                 <h4 class="cv-section-title">Logiciels</h4>
                 <div class="cv-inline-grid">
-                    <span class="cv-inline-tag">Pack Office (Excel, Word, PPT)</span>
+                    <span class="cv-inline-tag">Pack Office</span>
                     <span class="cv-inline-tag">Logiciel Dispatcher</span>
                     <span class="cv-inline-tag">Inttra (booking maritime)</span>
                     <span class="cv-inline-tag">Make.com</span>
                     <span class="cv-inline-tag">Notion</span>
-                    <span class="cv-inline-tag">ChatGPT API</span>
                     <span class="cv-inline-tag">Photoroom</span>
                 </div>
             </div>
@@ -746,8 +774,7 @@
                 <div class="cv-interests">
                     <span class="cv-interest">Tennis</span>
                     <span class="cv-interest">Voile</span>
-                    <span class="cv-interest">Automobile</span>
-                    <span class="cv-interest">Horlogerie</span>
+                    <span class="cv-interest">Automobile & Horlogerie</span>
                     <span class="cv-interest">Entrepreneuriat</span>
                     <span class="cv-interest">Veille technologique & IA</span>
                 </div>
@@ -761,7 +788,7 @@
     <div class="contact-wrapper reveal">
         <p class="section-label">Contact</p>
         <h2>Échangeons.</h2>
-        <p>Disponible pour un Bachelor Commerce International Logistique et Transport Durable — rentrée 2026.</p>
+        <p>Disponible pour un Bachelor Management des Transports et de la Logistique en alternance — rentrée 2026.</p>
         <a href="https://www.linkedin.com/in/louis-rivault-b267502aa" target="_blank" class="linkedin-btn">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
             Me contacter sur LinkedIn
