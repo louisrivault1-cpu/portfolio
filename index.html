@@ -847,7 +847,7 @@
                     <div class="cv-item-date">2024</div>
                 </div>
                 <div class="cv-item">
-                    <div class="cv-item-title">Repr&eacute;sentant de Ventes (temps partiel)</div>
+                    <div class="cv-item-title">Repr&eacute;sentant de Ventes (&agrave; temps partiel)</div>
                     <div class="cv-item-sub">Ostemboir</div>
                     <div class="cv-item-date">2021 — 2024</div>
                 </div>
@@ -904,9 +904,7 @@
             </a>
             <div class="qr-section">
                 <span class="qr-label">Scanner pour acc&eacute;der au portfolio</span>
-                <div class="qr-container">
-                    <canvas id="qrCanvas" width="140" height="140"></canvas>
-                </div>
+                <div class="qr-container" id="qrContainer"></div>
             </div>
         </div>
     </div>
@@ -1036,146 +1034,24 @@ window.addEventListener('scroll', () => {
 }, { passive: true });
 
 /* ═══════════════════════════════════════════ */
-/*  QR CODE GENERATOR (Canvas-based)           */
+/*  QR CODE — Real scannable QR via library    */
 /* ═══════════════════════════════════════════ */
 (function() {
-    // Minimal QR Code generator — encodes URL into QR via canvas
-    const url = 'https://louisrivault1-cpu.github.io/portfolio/';
-    const canvas = document.getElementById('qrCanvas');
-    if (!canvas) return;
-    const ctx = canvas.getContext('2d');
-    const size = 140;
-
-    // Use a simple alphanumeric QR encoding via a lookup table approach
-    // For reliability, we use a pre-computed QR matrix for this specific URL
-    // This is a Version 4, Error Correction L QR code for the URL
-    const qrData = generateQRMatrix(url);
-    const moduleCount = qrData.length;
-    const cellSize = size / moduleCount;
-
-    // Draw white background with rounded corners
-    ctx.fillStyle = '#ffffff';
-    ctx.fillRect(0, 0, size, size);
-
-    // Draw QR modules
-    for (let row = 0; row < moduleCount; row++) {
-        for (let col = 0; col < moduleCount; col++) {
-            if (qrData[row][col]) {
-                const x = col * cellSize;
-                const y = row * cellSize;
-                const r = cellSize * 0.15; // rounded corners
-                ctx.fillStyle = '#0a0a0e';
-                // Check if this is a finder pattern (top-left, top-right, bottom-left 7x7 blocks)
-                const isFinder = (row < 7 && col < 7) || (row < 7 && col >= moduleCount - 7) || (row >= moduleCount - 7 && col < 7);
-                if (isFinder) {
-                    ctx.fillStyle = '#0a0a0e';
-                }
-                roundRect(ctx, x, y, cellSize + 0.5, cellSize + 0.5, r);
-                ctx.fill();
-            }
-        }
-    }
-
-    // Add gold accent dots in the finder patterns centers
-    const finderCenters = [
-        [3 * cellSize + cellSize/2, 3 * cellSize + cellSize/2],
-        [(moduleCount - 4) * cellSize + cellSize/2, 3 * cellSize + cellSize/2],
-        [3 * cellSize + cellSize/2, (moduleCount - 4) * cellSize + cellSize/2]
-    ];
-    finderCenters.forEach(([cx, cy]) => {
-        ctx.beginPath();
-        ctx.arc(cx, cy, cellSize * 1.2, 0, Math.PI * 2);
-        ctx.fillStyle = '#c8a961';
-        ctx.fill();
-    });
-
-    function roundRect(ctx, x, y, w, h, r) {
-        ctx.beginPath();
-        ctx.moveTo(x + r, y);
-        ctx.lineTo(x + w - r, y);
-        ctx.quadraticCurveTo(x + w, y, x + w, y + r);
-        ctx.lineTo(x + w, y + h - r);
-        ctx.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
-        ctx.lineTo(x + r, y + h);
-        ctx.quadraticCurveTo(x, y + h, x, y + h - r);
-        ctx.lineTo(x, y + r);
-        ctx.quadraticCurveTo(x, y, x + r, y);
-        ctx.closePath();
-    }
-
-    // Simple QR code matrix generator
-    function generateQRMatrix(text) {
-        // For a clean, working QR code, we use a simple encoding
-        // This generates a visual QR-like pattern. For production, use a library.
-        // We'll create a deterministic pattern based on the URL hash
-        const size = 29; // Version 3 QR
-        const matrix = [];
-
-        // Initialize
-        for (let i = 0; i < size; i++) {
-            matrix[i] = [];
-            for (let j = 0; j < size; j++) {
-                matrix[i][j] = false;
-            }
-        }
-
-        // Finder patterns (7x7)
-        function drawFinder(row, col) {
-            for (let r = 0; r < 7; r++) {
-                for (let c = 0; c < 7; c++) {
-                    if (r === 0 || r === 6 || c === 0 || c === 6 ||
-                        (r >= 2 && r <= 4 && c >= 2 && c <= 4)) {
-                        matrix[row + r][col + c] = true;
-                    }
-                }
-            }
-        }
-
-        drawFinder(0, 0);
-        drawFinder(0, size - 7);
-        drawFinder(size - 7, 0);
-
-        // Timing patterns
-        for (let i = 8; i < size - 8; i++) {
-            matrix[6][i] = i % 2 === 0;
-            matrix[i][6] = i % 2 === 0;
-        }
-
-        // Alignment pattern (Version 3)
-        const alignPos = size - 9;
-        for (let r = -2; r <= 2; r++) {
-            for (let c = -2; c <= 2; c++) {
-                if (Math.abs(r) === 2 || Math.abs(c) === 2 || (r === 0 && c === 0)) {
-                    matrix[alignPos + r][alignPos + c] = true;
-                }
-            }
-        }
-
-        // Data area — fill with deterministic pattern from URL
-        let hash = 0;
-        for (let i = 0; i < text.length; i++) {
-            hash = ((hash << 5) - hash + text.charCodeAt(i)) | 0;
-        }
-
-        let seed = Math.abs(hash);
-        function nextRand() {
-            seed = (seed * 1103515245 + 12345) & 0x7fffffff;
-            return seed;
-        }
-
-        for (let r = 0; r < size; r++) {
-            for (let c = 0; c < size; c++) {
-                // Skip reserved areas
-                if ((r < 9 && c < 9) || (r < 9 && c >= size - 8) || (r >= size - 8 && c < 9)) continue;
-                if (r === 6 || c === 6) continue;
-                if (r >= alignPos - 2 && r <= alignPos + 2 && c >= alignPos - 2 && c <= alignPos + 2) continue;
-
-                matrix[r][c] = (nextRand() % 3) < 1;
-            }
-        }
-
-        return matrix;
-    }
+    const container = document.getElementById('qrContainer');
+    if (!container) return;
+    const script = document.createElement('script');
+    script.src = 'https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js';
+    script.onload = function() {
+        new QRCode(container, {
+            text: 'https://louisrivault1-cpu.github.io/portfolio/',
+            width: 140,
+            height: 140,
+            colorDark: '#0a0a0e',
+            colorLight: '#ffffff',
+            correctLevel: QRCode.CorrectLevel.M
+        });
+    };
+    document.head.appendChild(script);
 })();
 </script>
 
